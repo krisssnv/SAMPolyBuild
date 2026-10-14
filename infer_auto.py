@@ -66,6 +66,7 @@ def main():
                 ],
                 backend_args=None))
     cfg.trainer_cfg.devices=[args.gpu]
+    cfg.trainer_cfg.strategy='auto' # single GPU; ddp needs NCCL, unavailable on Windows
     cfg.trainer_cfg.use_distributed_sampler=False
     if args.work_dir is not None:
         cfg.trainer_cfg['default_root_dir'] = args.work_dir

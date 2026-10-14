@@ -1,0 +1,20 @@
+# Run with:  python predict_tiles.py --run predict_tiles.yaml
+# Any argument of predict_tiles.py can be set here; the same argument on the command line wins.
+# Tiles are predicted one after another, each into its own <out>/<tile>.shp and <out>/<tile>_mask.tif.
+
+# .tif files, folders (all .tif inside) and/or patterns like D6-*.tif
+src:
+  - C:/Users/kavramova/Desktop/New folder with tifs check if you can del/D6-076-2025AA.tif
+  - C:/Users/kavramova/Desktop/New folder with tifs check if you can del/D6-077-2025AA.tif
+  - C:/Users/kavramova/Desktop/New folder with tifs check if you can del/D6-092-2025AA.tif
+
+out: predictions/
+
+# Used only for tiles without an embedded CRS (just a .tfw); the others keep their own.
+# The tiles that have one are all EPSG:32635 (WGS 84 / UTM zone 35N).
+crs: EPSG:32635
+
+format: shp          # shp or gpkg
+score_thr: 0.1
+min_area: 4.0
+skip_existing: true  # rerunning continues where it stopped
